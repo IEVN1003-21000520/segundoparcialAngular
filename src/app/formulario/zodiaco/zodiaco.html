@@ -1,0 +1,69 @@
+<div class="max-w-xl mx-auto my-8 space-y-6">
+
+  <div class="p-6 bg-pink-50/50 border border-pink-200 rounded-2xl shadow-sm space-y-4">
+    <h2 class="text-xl font-bold text-pink-900 border-b border-pink-200 pb-2">Datos Personales</h2>
+
+    <div>
+      <label class="block mb-1 text-sm font-medium text-pink-900">Nombre</label>
+      <input type="text" [(ngModel)]="nombre" placeholder="Nombre" class="bg-white border border-pink-200 text-pink-900 text-sm rounded-lg focus:ring-pink-400 focus:border-pink-400 block w-full p-2.5 placeholder-pink-300" />
+    </div>
+
+    <div>
+      <label class="block mb-1 text-sm font-medium text-pink-900">Apellido paterno</label>
+      <input type="text" [(ngModel)]="apellidoP" placeholder="Apellido paterno" class="bg-white border border-pink-200 text-pink-900 text-sm rounded-lg focus:ring-pink-400 focus:border-pink-400 block w-full p-2.5 placeholder-pink-300" />
+    </div>
+
+    <div>
+      <label class="block mb-1 text-sm font-medium text-pink-900">Apellido materno</label>
+      <input type="text" [(ngModel)]="apellidoM" placeholder="Apellido materno" class="bg-white border border-pink-200 text-pink-900 text-sm rounded-lg focus:ring-pink-400 focus:border-pink-400 block w-full p-2.5 placeholder-pink-300" />
+    </div>
+
+    <h3 class="text-md font-semibold text-pink-900 pt-2">Fecha de nacimiento</h3>
+    <div class="grid grid-cols-3 gap-3">
+      <div>
+        <label class="block mb-1 text-xs font-medium text-pink-800">Día</label>
+        <input type="number" [(ngModel)]="dia" placeholder="Día" class="bg-white border border-pink-200 text-pink-900 text-sm rounded-lg focus:ring-pink-400 focus:border-pink-400 block w-full p-2.5 placeholder-pink-300" />
+      </div>
+      <div>
+        <label class="block mb-1 text-xs font-medium text-pink-800">Mes</label>
+        <input type="number" [(ngModel)]="mes" placeholder="Mes" class="bg-white border border-pink-200 text-pink-900 text-sm rounded-lg focus:ring-pink-400 focus:border-pink-400 block w-full p-2.5 placeholder-pink-300" />
+      </div>
+      <div>
+        <label class="block mb-1 text-xs font-medium text-pink-800">Año</label>
+        <input type="number" [(ngModel)]="anio" placeholder="Año" class="bg-white border border-pink-200 text-pink-900 text-sm rounded-lg focus:ring-pink-400 focus:border-pink-400 block w-full p-2.5 placeholder-pink-300" />
+      </div>
+    </div>
+
+    <h3 class="text-md font-semibold text-pink-900 pt-2">Sexo</h3>
+    <div class="flex items-center space-x-6">
+      <div class="flex items-center">
+        <input type="radio" id="masculino" name="sexo" value="Masculino" [(ngModel)]="sexo" class="w-4 h-4 text-pink-500 bg-white border-pink-300 focus:ring-pink-400" />
+        <label for="masculino" class="ms-2 text-sm font-medium text-pink-900">Masculino</label>
+      </div>
+      <div class="flex items-center">
+        <input type="radio" id="femenino" name="sexo" value="Femenino" [(ngModel)]="sexo" class="w-4 h-4 text-pink-500 bg-white border-pink-300 focus:ring-pink-400" />
+        <label for="femenino" class="ms-2 text-sm font-medium text-pink-900">Femenino</label>
+      </div>
+    </div>
+
+    <button (click)="imprimir()" class="w-full text-white bg-pink-500 hover:bg-pink-600 focus:ring-4 focus:ring-pink-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors">
+      Imprimir
+    </button>
+  </div>
+
+  <div *ngIf="mostrarResultado" class="p-6 bg-pink-50/50 border border-pink-200 rounded-2xl shadow-sm text-center space-y-3">
+    <h2 class="text-xl font-bold text-pink-900">
+      Hola <span class="italic text-pink-600">{{ resNombre }}</span>
+    </h2>
+    <p class="text-lg text-pink-800">
+      Tienes <span class="font-bold text-pink-900">{{ edadCalculada }}</span> años
+    </p>
+    <p class="text-xs text-pink-500 uppercase tracking-wider font-semibold">Tu signo zodiacal</p>
+    
+    <div class="flex flex-col items-center justify-center p-4 bg-white/80 rounded-xl border border-pink-100 shadow-inner">
+      <span class="text-lg font-bold capitalize text-pink-900 mb-2">Es {{ signo }}</span>
+      <img [src]="imagenSigno" [alt]="signo" class="w-48 h-48 object-contain rounded-lg shadow-sm border border-pink-100 bg-white p-2" />
+    </div>
+  </div>
+
+</div>

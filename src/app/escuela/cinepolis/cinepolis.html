@@ -1,1 +1,142 @@
-<p>cinepolis works!</p>
+<div class="fixed inset-0 bg-blue-900/80 backdrop-blur-sm -z-10"></div>
+
+<div class="max-w-4xl mx-auto p-6 bg-blue-950 rounded-lg shadow border border-yellow-400 my-8 text-white">
+
+  <h1 class="text-3xl font-bold text-yellow-300 mb-6 text-center">
+    Cinépolis
+  </h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <form>
+      <h2 class="text-xl font-bold text-yellow-300 mb-4 border-b border-blue-800 pb-2">
+        Entradas
+      </h2>
+
+      <div class="mb-5">
+        <label for="nombre" class="block mb-2 text-sm font-medium text-white">
+          Nombre
+        </label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          [(ngModel)]="nombre"
+          required
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          placeholder="Ej. Juan Pérez"
+        >
+      </div>
+
+      <div class="mb-5">
+        <label for="compradores" class="block mb-2 text-sm font-medium text-white">
+          Cantidad Compradores
+        </label>
+        <input
+          type="number"
+          id="compradores"
+          name="compradores"
+          [(ngModel)]="compradores"
+          required
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        >
+      </div>
+
+      <div class="mb-5">
+        <label for="boletos" class="block mb-2 text-sm font-medium text-white">
+          Cantidad De Boletos
+        </label>
+        <input
+          type="number"
+          id="boletos"
+          name="boletos"
+          [(ngModel)]="boletos"
+          required
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          placeholder="Máx. 7 boletos por persona"
+        >
+      </div>
+
+      <div class="mb-5">
+        <label class="block mb-2 text-sm font-medium text-white">
+          Tarjeta Cineco
+        </label>
+        <div class="flex items-center gap-6 mt-2">
+          <div class="flex items-center">
+            <input
+              id="cineco-si"
+              type="radio"
+              name="cineco"
+              [(ngModel)]="tieneCineco"
+              value="si"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+            >
+            <label for="cineco-si" class="ms-2 text-sm font-medium text-white">Sí</label>
+          </div>
+          <div class="flex items-center">
+            <input
+              id="cineco-no"
+              type="radio"
+              name="cineco"
+              [(ngModel)]="tieneCineco"
+              value="no"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+            >
+            <label for="cineco-no" class="ms-2 text-sm font-medium text-white">No</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-3 mt-5">
+        <button
+          type="button"
+          (click)="procesar()"
+          class="text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
+        >
+          Procesar
+        </button>
+
+        <button
+          type="button"
+          (click)="limpiar()"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
+        >
+          Limpiar
+        </button>
+      </div>
+
+    </form>
+
+    <div>
+      <h2 class="text-xl font-bold text-yellow-300 mb-4 border-b border-blue-800 pb-2">
+        Salidas
+      </h2>
+
+      <div *ngIf="mostrarTicket" class="space-y-3">
+        <h3><strong>Nombre:</strong> {{ ticketNombre }}</h3>
+        <h3><strong>Boletos:</strong> {{ ticketBoletos }} boleto(s)</h3>
+        <h3><strong>Subtotal:</strong> ${{ ticketSubtotal }}</h3>
+
+        <div class="pt-2 text-sm text-blue-200">
+          <p class="font-bold text-yellow-300">Notas de Descuento:</p>
+          <p>{{ descCantidadText }}</p>
+          <p>{{ descCinecoText }}</p>
+        </div>
+
+        <h3 class="text-xl font-bold text-yellow-300 pt-3">
+          Valor a Pagar: ${{ ticketTotal }}
+        </h3>
+      </div>
+
+      <div *ngIf="!mostrarTicket && !mensajeError" class="text-gray-300 text-sm py-8">
+        <p>Ingresa los datos requeridos y haz clic en Procesar.</p>
+      </div>
+
+      <div *ngIf="mensajeError" class="mt-4 text-sm font-bold text-yellow-300">
+        {{ mensajeError }}
+      </div>
+    </div>
+
+  </div>
+
+</div>

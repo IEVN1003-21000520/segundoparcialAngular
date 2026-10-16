@@ -91,7 +91,7 @@
         <button
           type="button"
           (click)="procesar()"
-          class="text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5"
+          class="text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer"
         >
           Procesar
         </button>
@@ -99,7 +99,7 @@
         <button
           type="button"
           (click)="limpiar()"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer"
         >
           Limpiar
         </button>
@@ -137,6 +137,53 @@
       </div>
     </div>
 
+  </div>
+
+  <div class="mt-10 pt-6 border-t border-yellow-400">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-yellow-300">
+        Venta Realizada Recientemente
+      </h2>
+      <button
+        type="button"
+        (click)="verHistorial()"
+        class="text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-4 py-2 cursor-pointer"
+      >
+        Ver Historial de Ventas
+      </button>
+    </div>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left text-gray-300">
+        <thead class="text-xs text-yellow-900 uppercase bg-yellow-400">
+          <tr>
+            <th scope="col" class="px-6 py-3">Nombre</th>
+            <th scope="col" class="px-6 py-3">Cant. Compradores</th>
+            <th scope="col" class="px-6 py-3">Boletos</th>
+            <th scope="col" class="px-6 py-3">Descuento por Cantidad</th>
+            <th scope="col" class="px-6 py-3">Descuento Tarjeta Cineco</th>
+            <th scope="col" class="px-6 py-3">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="mostrarTicket; else sinVenta" class="bg-blue-900 border-b border-blue-800">
+            <td class="px-6 py-4 font-medium text-white whitespace-nowrap">{{ ticketNombre }}</td>
+            <td class="px-6 py-4">{{ compradores }}</td>
+            <td class="px-6 py-4">{{ ticketBoletos }}</td>
+            <td class="px-6 py-4">{{ descCantidadText }}</td>
+            <td class="px-6 py-4">{{ descCinecoText }}</td>
+            <td class="px-6 py-4 font-bold text-yellow-300">${{ ticketTotal }}</td>
+          </tr>
+          <ng-template #sinVenta>
+            <tr class="bg-blue-900 border-b border-blue-800">
+              <td colspan="6" class="px-6 py-4 text-center text-gray-300">
+                Aún no se ha procesado ninguna venta.
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </div>

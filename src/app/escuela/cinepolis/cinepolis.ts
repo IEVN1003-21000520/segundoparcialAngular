@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cinepolis',
@@ -26,6 +27,8 @@ export class Cinepolis {
   descCantidadText: string = '';
   descCinecoText: string = '';
   ticketTotal: number = 0;
+
+  constructor(private router: Router) {}
 
   procesar(): void {
     var maximoPermitido: number = this.compradores * this.maxPorPersona;
@@ -71,6 +74,20 @@ export class Cinepolis {
     this.ticketTotal = Number(totalFinal.toFixed(2));
 
     this.mostrarTicket = true;
+
+    const nuevaVenta = {
+      nombre: this.ticketNombre,
+      compradores: this.compradores,
+      boletos: this.ticketBoletos,
+      subtotal: this.ticketSubtotal,
+      descCantidadText: this.descCantidadText,
+      descCinecoText: this.descCinecoText,
+      total: this.ticketTotal
+    };
+
+    const ventasGuardadas = JSON.parse(localStorage.getItem('ventas_cinepolis') || '[]');
+    ventasGuardadas.push(nuevaVenta);
+    localStorage.setItem('ventas_cinepolis', JSON.stringify(ventasGuardadas));
   }
 
   limpiar(): void {
@@ -81,4 +98,8 @@ export class Cinepolis {
     this.mostrarTicket = false;
     this.mensajeError = '';
   }
+
+ verHistorial(): void {
+  this.router.navigate(['/escuela/ventas']);
+}
 }

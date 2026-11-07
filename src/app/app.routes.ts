@@ -2,6 +2,68 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'utl',
+    children: [
+      {
+        path: 'alumnos',
+        loadComponent: () =>
+          import('./utl/ABCAlumnos/alumnos/alumnos').then(
+            (c) => c.Alumnos
+          ),
+      },
+      {
+        path: 'agregar',
+        loadComponent: () =>
+          import('./utl/ABCAlumnos/agregar/agregar').then(
+            (c) => c.Agregar
+          ),
+      },
+      {
+        path: 'editar/:matricula',
+        loadComponent: () =>
+          import('./utl/ABCAlumnos/editar/editar').then(
+            (c) => c.Editar
+          ),
+      },
+      {
+        path: 'eliminar/:matricula',
+        loadComponent: () =>
+          import('./utl/ABCAlumnos/eliminar/eliminar').then(
+            (c) => c.Eliminar
+          ),
+      },
+      {
+        path: 'maestros',
+        loadComponent: () =>
+          import('./utl/abcmaestros/maestros/maestros').then(
+            (c) => c.Maestros
+          ),
+      },
+      {
+        path: 'agregarmaestro',
+        loadComponent: () =>
+          import('./utl/abcmaestros/agregar/agregar').then(
+            (c) => c.Agregar
+          ),
+      },
+      {
+        path: 'editarmestro/:idmaestro',
+        loadComponent: () =>
+          import('./utl/abcmaestros/editar/editar').then(
+            (c) => c.Editar
+          ),
+      },
+      {
+        path: 'eliminarmestro/:idmaestro',
+        loadComponent: () =>
+          import('./utl/abcmaestros/eliminar/eliminar').then(
+            (c) => c.Eliminar
+          ),
+      },
+    ],
+  },
+
+  {
     path: 'formulario',
     children: [
       {
@@ -20,6 +82,7 @@ export const routes: Routes = [
       },
     ],
   },
+
   {
     path: 'escuela',
     children: [
@@ -46,6 +109,14 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'admin', pathMatch: 'full' },
-  { path: '**', redirectTo: 'admin' },
+
+  {
+    path: '',
+    redirectTo: 'escuela/cinepolis',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    redirectTo: 'escuela/cinepolis',
+  },
 ];
